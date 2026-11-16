@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@datagouv/regles-rule-form": "https://github.com/datagouv/algos.data.gouv.fr/releases/download/v0.0.2/datagouv-regles-rule-form-0.0.2.tgz",
     "apexcharts": "^7.5.1",
     "astro": "^7.2.9"
   },
