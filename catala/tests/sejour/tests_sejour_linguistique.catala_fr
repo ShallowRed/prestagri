@@ -114,7 +114,7 @@ champ d'application TestSejourLinguistique_famille_aisée:
   assertion (calcul.durée_éligible = 10)
   assertion (calcul.taux_jour = 0€)
   assertion (calcul.aide = 0€)
-  assertion (calcul.inéligibilité = [Famille_aisée contenu vrai])
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai])
 ```
 
 # Cas N°6 : durée éligible limitée par le plafond annuel civil (21 jours)
@@ -336,7 +336,7 @@ champ d'application TestSejourLinguistique_exceptions_multiples:
     }
   assertion (calcul.durée_éligible = 0)
   assertion (calcul.aide = 0€)
-  assertion (calcul.inéligibilité = [Famille_aisée contenu vrai; Enfant_trop_agé contenu vrai; Séjour_en_période_scolaire contenu vrai;])
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai; Enfant_trop_agé contenu vrai; Séjour_en_période_scolaire contenu vrai;])
 ```
 
 # Cas N°16 : durée éligible nulle (trop de jours déjà pris en charge)
@@ -426,5 +426,5 @@ champ d'application TestSejourLinguistique_qf_limite_1401:
     }
   assertion (calcul.taux_jour = 0€)
   assertion (calcul.aide = 0€)
-  assertion (calcul.inéligibilité = [Famille_aisée contenu vrai])
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai])
 ```

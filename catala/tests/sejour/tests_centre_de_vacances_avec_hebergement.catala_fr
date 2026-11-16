@@ -114,7 +114,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_famille_aisée:
     }
   assertion (calcul.durée_éligible = 3)
   assertion (calcul.aide = 0€)
-  assertion (calcul.inéligibilité = [Famille_aisée contenu vrai;])
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai;])
 ```
 
 # Cas N°6 : aide déjà utilisée

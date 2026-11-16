@@ -85,7 +85,7 @@ champ d'application CalculSejourLoisirSansHebergement:
 
   définition inéligibilité état famille_aisée égal à
     si quotient_familial > 1400 €
-    alors inéligibilité ++ [Famille_aisée contenu vrai] sinon inéligibilité
+    alors inéligibilité ++ [Quotient_Familial_inéligible contenu vrai] sinon inéligibilité
 
   définition aide état défaut
     sous condition (nombre de inéligibilité) > 0

@@ -1,0 +1,393 @@
+> Usage de Sejour_gite
+> Usage de Presta_Exception
+
+# Cas N°1 : séjour gîte classique en pension avec quotient familial bas
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_classique_pension:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_classique_pension:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 131,00€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°2 : séjour gîte classique autre formule (non pension) avec quotient familial bas
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_classique_autre:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_classique_autre:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: faux
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 12,70€)
+  assertion (calcul.aide = 127,00€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°3 : famille aisée (QF > 1400€)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_famille_aisée:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_famille_aisée:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 1500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 0€)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai])
+```
+
+# Cas N°4 : enfant trop âgé (18 ans ou plus au début du séjour)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_enfant_trop_agé:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_enfant_trop_agé:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2008-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Enfant_trop_agé contenu vrai])
+```
+
+# Cas N°5 : enfant avec handicap (incapacité > 50%) - éligible jusqu'à 20 ans
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_enfant_handicapé_éligible:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_enfant_handicapé_éligible:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2008-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: vrai
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 131,00€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°6 : enfant avec handicap trop âgé (20 ans ou plus au début du séjour)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_enfant_handicapé_trop_agé:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_enfant_handicapé_trop_agé:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2006-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: vrai
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Enfant_trop_agé_malgré_prolongation_handicap contenu vrai])
+```
+
+# Cas N°7 : durée éligible limitée par le plafond annuel (45 jours)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_durée_limité_année:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_durée_limité_année:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 30
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 20
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 25)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 327,50€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°8 : durée éligible limitée par la durée du séjour (45 jours max)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_durée_max_45_jours:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_durée_max_45_jours:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 60
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 3000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 45)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 589,50€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°9 : durée éligible nulle (trop de jours déjà pris en charge)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_durée_éligible_nulle:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_durée_éligible_nulle:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 50
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 0)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°10 : prise en charge partielle par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_prise_en_charge_partielle:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_prise_en_charge_partielle:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 1900 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 100,00€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°11 : prise en charge totale par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_prise_en_charge_totale:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_prise_en_charge_totale:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 2000 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Autre_organisme_financeur contenu vrai])
+```
+
+# Cas N°12 : montant déboursé inférieur à l'aide calculée
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_montant_inférieur:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_montant_inférieur:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 100 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 100€)
+  assertion (calcul.inéligibilité = [])
+```
+
+
+# Cas N°18 : combinaison de durée limitée et prise en charge partielle
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_combinaison:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_combinaison:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2015-01-01|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 30
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 30
+      -- montant_déboursé: 500 €
+      -- montant_pris_en_charge_par_autre_organisme: 300 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 15)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 196,5€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°19 : enfant à la limite des 18 ans (17 ans et 364 jours)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_enfant_limite_18_ans:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_enfant_limite_18_ans:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2008-02-21|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: faux
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 131,00€)
+  assertion (calcul.inéligibilité = [])
+```
+
+# Cas N°20 : enfant handicapé à la limite des 20 ans (19 ans et 364 jours)
+
+```catala
+#[test]
+déclaration champ d'application TestSejourGite_enfant_handicapé_limite_20_ans:
+  résultat calcul contenu Sejour_gite.CalculSéjourGite
+
+champ d'application TestSejourGite_enfant_handicapé_limite_20_ans:
+  définition calcul égal à
+    résultat de Sejour_gite.CalculSéjourGite avec {
+      -- date_naissance: |2006-02-21|
+      -- date_debut_sejour: |2026-02-20|
+      -- durée_séjour: 10
+      -- incapacite_permanente_supérieure_50: vrai
+      -- durée_déjà_prise_en_charge: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
+      -- quotient_familial: 500 €
+      -- en_pension: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 13,10€)
+  assertion (calcul.aide = 131,00€)
+  assertion (calcul.inéligibilité = [])
+```

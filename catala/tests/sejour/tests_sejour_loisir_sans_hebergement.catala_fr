@@ -102,5 +102,5 @@ champ d'application TestLoisirSansHebergement_famille_aisée:
       -- centre_agréé: vrai
     }
   assertion (calcul.aide = 0,0€)
-  assertion (calcul.inéligibilité = [Famille_aisée contenu vrai;])
+  assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai;])
 ```
