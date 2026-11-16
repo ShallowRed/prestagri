@@ -1,0 +1,24 @@
+---
+import DsfrLayout from "../layouts/dsfrLayout.astro"
+import "@datagouv/algos-rule-form/style.css"
+---
+<DsfrLayout>
+    <div class="fr-container fr-mt-8v fr-mt-md-14v fr-mb-2v fr-mb-md-8v">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+                <h2>Calcul du Quotient Familial</h2>
+                <p class="fr-text--lead">Renseignez les informations fournies par l'agent dans son dossier</p>
+            </div>
+        </div>
+    </div>
+    <div class="fr-container fr-mb-10v fr-mb-md-14v">
+        <div class="fr-grid-row fr-grid-row--center">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+                <rule-form rule="prestagri-quotient-familial" service="https://datapi.lucaspoulain.com"></rule-form>
+            </div>
+        </div>
+    </div>
+    <script>
+        import "@datagouv/algos-rule-form"
+    </script>
+</DsfrLayout>
