@@ -20,6 +20,7 @@ champ d'application TestSejourEducatif_classique:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -47,6 +48,7 @@ champ d'application TestSejourEducatif_enfant_trop_agé:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -74,6 +76,7 @@ champ d'application TestSejourEducatif_enfant_non_scolarisé:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: faux
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -101,6 +104,7 @@ champ d'application TestSejourEducatif_hors_période_scolaire:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -128,6 +132,7 @@ champ d'application TestSejourEducatif_trop_court:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -155,6 +160,7 @@ champ d'application TestSejourEducatif_classe_non_agréée:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: faux
     }
@@ -182,6 +188,7 @@ champ d'application TestSejourEducatif_max_année_scolaire:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -209,6 +216,7 @@ champ d'application TestSejourEducatif_max_année_civile:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -236,6 +244,7 @@ champ d'application TestSejourEducatif_montant_inférieur:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 100 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -262,6 +271,7 @@ champ d'application TestSejourEducatif_famille_aisée:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 2000 €
       -- classe_agréée: vrai
     }
@@ -289,6 +299,7 @@ champ d'application TestSejourEducatif_durée_limité_année_civile:
       -- nb_jours_déjà_pris_en_charge_année_civile: 10
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -315,6 +326,7 @@ champ d'application TestSejourEducatif_durée_max_21_jours:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -341,6 +353,7 @@ champ d'application TestSejourEducatif_enfant_18_ans:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: vrai
     }
@@ -368,6 +381,7 @@ champ d'application TestSejourEducatif_taux_qf_621_780:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 700 €
       -- classe_agréée: vrai
     }
@@ -394,6 +408,7 @@ champ d'application TestSejourEducatif_taux_qf_781_930:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: vrai
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 850 €
       -- classe_agréée: vrai
     }
@@ -420,10 +435,67 @@ champ d'application TestSejourEducatif_exceptions_multiples:
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- enfant_scolarisé: faux
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- classe_agréée: faux
     }
   assertion (calcul.durée_éligible = 3)
   assertion (calcul.aide = 0€)
   assertion (calcul.inéligibilité = [Enfant_trop_agé contenu vrai; Enfant_non_scolarisé contenu vrai;  Séjour_trop_court contenu vrai; Séjour_hors_période_scolaire contenu vrai; Classe_non_agréée contenu vrai; Maximum_voyages_par_année_scolaire_atteint contenu vrai ; Maximum_voyages_par_année_civile_atteint contenu vrai])
+```
+
+# Cas N°17 : montant partiellement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourEducatif_montant_pris_en_charge:
+  résultat calcul contenu Sejour_educatif.CalculSéjourÉducatif
+
+champ d'application TestSejourEducatif_montant_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_educatif.CalculSéjourÉducatif avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 10
+      -- au_moins_partiellement_en_période_scolaire: vrai
+      -- voyages_déjà_pris_en_charge_année_civile: 0
+      -- voyages_déjà_pris_en_charge_année_scolaire: 0
+      -- nb_jours_déjà_pris_en_charge_année_civile: 0
+      -- enfant_scolarisé: vrai
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 1800 €
+      -- quotient_familial: 600 €
+      -- classe_agréée: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 26,15€)
+  assertion (calcul.aide = 200,0€)
+```
+
+# Cas N°18 : montant entièrement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourEducatif_montant_entierement_pris_en_charge:
+  résultat calcul contenu Sejour_educatif.CalculSéjourÉducatif
+
+champ d'application TestSejourEducatif_montant_entierement_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_educatif.CalculSéjourÉducatif avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 10
+      -- au_moins_partiellement_en_période_scolaire: vrai
+      -- voyages_déjà_pris_en_charge_année_civile: 0
+      -- voyages_déjà_pris_en_charge_année_scolaire: 0
+      -- nb_jours_déjà_pris_en_charge_année_civile: 0
+      -- enfant_scolarisé: vrai
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 2000 €
+      -- quotient_familial: 600 €
+      -- classe_agréée: vrai
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Autre_organisme_financeur contenu vrai])
 ```

@@ -17,6 +17,7 @@ champ d'application TestSejourLinguistique_classique:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -40,6 +41,7 @@ champ d'application TestSejourLinguistique_enfant_trop_agé:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -63,6 +65,7 @@ champ d'application TestSejourLinguistique_en_periode_scolaire:
       -- durée_séjour_hors_vacances_scolaire: 5
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -86,6 +89,7 @@ champ d'application TestSejourLinguistique_limite_hors_vacances:
       -- durée_séjour_hors_vacances_scolaire: 3
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -109,6 +113,7 @@ champ d'application TestSejourLinguistique_famille_aisée:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 2000 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -133,6 +138,7 @@ champ d'application TestSejourLinguistique_durée_limité_année_civile:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 10
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 11)
@@ -155,6 +161,7 @@ champ d'application TestSejourLinguistique_durée_max_21_jours:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 21)
@@ -177,6 +184,7 @@ champ d'application TestSejourLinguistique_enfant_18_ans:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -200,6 +208,7 @@ champ d'application TestSejourLinguistique_taux_qf_621_780:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 700 €
     }
   assertion (calcul.taux_jour = 23,65€)
@@ -222,6 +231,7 @@ champ d'application TestSejourLinguistique_taux_qf_781_930:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 850 €
     }
   assertion (calcul.taux_jour = 21,20€)
@@ -244,6 +254,7 @@ champ d'application TestSejourLinguistique_taux_qf_931_1090:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 1000 €
     }
   assertion (calcul.taux_jour = 15,75€)
@@ -266,6 +277,7 @@ champ d'application TestSejourLinguistique_taux_qf_1091_1250:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 1150 €
     }
   assertion (calcul.taux_jour = 10,85€)
@@ -288,6 +300,7 @@ champ d'application TestSejourLinguistique_taux_qf_1251_1400:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 1300 €
     }
   assertion (calcul.taux_jour = 8,15€)
@@ -310,6 +323,7 @@ champ d'application TestSejourLinguistique_montant_inférieur:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 100 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 10)
@@ -332,6 +346,7 @@ champ d'application TestSejourLinguistique_exceptions_multiples:
       -- durée_séjour_hors_vacances_scolaire: 5
       -- nb_jours_déjà_pris_en_charge_année_civile: 25
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 2000 €
     }
   assertion (calcul.durée_éligible = 0)
@@ -355,6 +370,7 @@ champ d'application TestSejourLinguistique_durée_éligible_nulle:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 25
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
     }
   assertion (calcul.durée_éligible = 0)
@@ -378,6 +394,7 @@ champ d'application TestSejourLinguistique_qf_limite_621:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 621 €
     }
   assertion (calcul.taux_jour = 23,65€)
@@ -400,6 +417,7 @@ champ d'application TestSejourLinguistique_qf_limite_1400:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 1400 €
     }
   assertion (calcul.taux_jour = 8,15€)
@@ -422,9 +440,58 @@ champ d'application TestSejourLinguistique_qf_limite_1401:
       -- durée_séjour_hors_vacances_scolaire: 0
       -- nb_jours_déjà_pris_en_charge_année_civile: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 1401 €
     }
   assertion (calcul.taux_jour = 0€)
   assertion (calcul.aide = 0€)
   assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai])
+```
+
+# Cas N°20 : montant partiellement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourLinguistique_montant_pris_en_charge:
+  résultat calcul contenu Sejour_linguistique.CalculSéjourLinguistique
+
+champ d'application TestSejourLinguistique_montant_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_linguistique.CalculSéjourLinguistique avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 10
+      -- durée_séjour_hors_vacances_scolaire: 0
+      -- nb_jours_déjà_pris_en_charge_année_civile: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 1800 €
+      -- quotient_familial: 600 €
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.taux_jour = 26,15€)
+  assertion (calcul.aide = 200,0€)
+```
+
+# Cas N°21 : montant entièrement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestSejourLinguistique_montant_entierement_pris_en_charge:
+  résultat calcul contenu Sejour_linguistique.CalculSéjourLinguistique
+
+champ d'application TestSejourLinguistique_montant_entierement_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_linguistique.CalculSéjourLinguistique avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 10
+      -- durée_séjour_hors_vacances_scolaire: 0
+      -- nb_jours_déjà_pris_en_charge_année_civile: 0
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 2000 €
+      -- quotient_familial: 600 €
+    }
+  assertion (calcul.durée_éligible = 10)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Autre_organisme_financeur contenu vrai])
 ```

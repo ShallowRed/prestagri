@@ -16,6 +16,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_classique:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -38,6 +39,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_trop_agé:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -63,6 +65,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_non_agréé:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: faux
     }
@@ -87,6 +90,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_moins_cher:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 70 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -109,6 +113,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_famille_aisée:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 70 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 2000 €
       -- centre_agréé: vrai
     }
@@ -132,6 +137,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_aide_utilisée:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 44
       -- montant_déboursé: 70 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -154,6 +160,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_aide_surutilisée:
       -- durée_séjour: 3
       -- durée_déjà_prise_en_charge: 47
       -- montant_déboursé: 70 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -177,6 +184,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_enfant_trop_jeune:
       -- durée_séjour: 5
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -200,6 +208,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_durée_max:
       -- durée_séjour: 50
       -- durée_déjà_prise_en_charge: 0
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -222,6 +231,7 @@ champ d'application TestCentreDeVacancesAvecHebergement_enfant_18_ans:
       -- durée_séjour: 5
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -246,11 +256,61 @@ champ d'application TestCentreDeVacancesAvecHebergement_enfant_4_ans:
       -- durée_séjour: 5
       -- durée_déjà_prise_en_charge: 20
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
   assertion (calcul.durée_éligible = 5)
   assertion (calcul.aide = 0€)
   assertion (calcul.inéligibilité = [Enfant_trop_jeune contenu vrai])
+
+```
+
+# Cas N°12 : montant partiellement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestCentreDeVacancesAvecHebergement_montant_pris_en_charge:
+  résultat calcul contenu Centre_de_vacances_avec_hebergement.CalculCentreDeVacancesAvecHebergement
+
+champ d'application TestCentreDeVacancesAvecHebergement_montant_pris_en_charge:
+  définition calcul égal à
+    résultat de Centre_de_vacances_avec_hebergement.CalculCentreDeVacancesAvecHebergement avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 3
+      -- durée_déjà_prise_en_charge: 20
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 500 €
+      -- quotient_familial: 600 €
+      -- centre_agréé: vrai
+    }
+  assertion (calcul.durée_éligible = 3)
+  assertion (calcul.aide = 78,60€)
+
+```
+
+# Cas N°13 : montant entièrement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestCentreDeVacancesAvecHebergement_montant_entierement_pris_en_charge:
+  résultat calcul contenu Centre_de_vacances_avec_hebergement.CalculCentreDeVacancesAvecHebergement
+
+champ d'application TestCentreDeVacancesAvecHebergement_montant_entierement_pris_en_charge:
+  définition calcul égal à
+    résultat de Centre_de_vacances_avec_hebergement.CalculCentreDeVacancesAvecHebergement avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 3
+      -- durée_déjà_prise_en_charge: 20
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 2000 €
+      -- quotient_familial: 600 €
+      -- centre_agréé: vrai
+    }
+  assertion (calcul.durée_éligible = 3)
+  assertion (calcul.aide = 0€)
+  assertion (calcul.inéligibilité = [Autre_organisme_financeur contenu vrai])
 
 ```

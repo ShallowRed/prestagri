@@ -15,6 +15,7 @@ champ d'application TestLoisirSansHebergement_classique:
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 3,5
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -36,6 +37,7 @@ champ d'application TestLoisirSansHebergement_trop_agé:
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 3,5
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -57,6 +59,7 @@ champ d'application TestLoisirSansHebergement_centre_non_agréé:
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 3,5
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: faux
     }
@@ -78,6 +81,7 @@ champ d'application TestLoisirSansHebergement_séjour_peu_cher:
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 3,5
       -- montant_déboursé: 20 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 600 €
       -- centre_agréé: vrai
     }
@@ -98,9 +102,55 @@ champ d'application TestLoisirSansHebergement_famille_aisée:
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 3,5
       -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 0 €
       -- quotient_familial: 2000 €
       -- centre_agréé: vrai
     }
   assertion (calcul.aide = 0,0€)
   assertion (calcul.inéligibilité = [Quotient_Familial_inéligible contenu vrai;])
+
+```
+
+# Cas N°6 : montant partiellement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestLoisirSansHebergement_montant_pris_en_charge:
+  résultat calcul contenu Sejour_loisir_sans_hebergement.CalculSejourLoisirSansHebergement
+
+champ d'application TestLoisirSansHebergement_montant_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_loisir_sans_hebergement.CalculSejourLoisirSansHebergement avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 3,5
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 500 €
+      -- quotient_familial: 600 €
+      -- centre_agréé: vrai
+    }
+  assertion (calcul.taux_jour = 8,65€ )
+  assertion (calcul.aide = 30,30€)
+```
+
+# Cas N°7 : montant entièrement pris en charge par un autre organisme
+
+```catala
+#[test]
+déclaration champ d'application TestLoisirSansHebergement_montant_entierement_pris_en_charge:
+  résultat calcul contenu Sejour_loisir_sans_hebergement.CalculSejourLoisirSansHebergement
+
+champ d'application TestLoisirSansHebergement_montant_entierement_pris_en_charge:
+  définition calcul égal à
+    résultat de Sejour_loisir_sans_hebergement.CalculSejourLoisirSansHebergement avec {
+      -- date_naissance : |2020-02-20|
+      -- date_debut_sejour : |2026-02-20|
+      -- durée_séjour: 3,5
+      -- montant_déboursé: 2000 €
+      -- montant_pris_en_charge_par_autre_organisme: 2000 €
+      -- quotient_familial: 600 €
+      -- centre_agréé: vrai
+    }
+  assertion (calcul.aide = 0,0€)
+  assertion (calcul.inéligibilité = [Autre_organisme_financeur contenu vrai])
 ```

@@ -15,6 +15,7 @@ déclaration champ d'application CalculSéjourÉducatif:
   entrée nb_jours_déjà_pris_en_charge_année_civile contenu entier
   entrée enfant_scolarisé contenu booléen
   entrée montant_déboursé contenu argent
+  entrée montant_pris_en_charge_par_autre_organisme contenu argent
   entrée quotient_familial contenu argent
   entrée classe_agréée contenu booléen
   interne date_debut_année_scolaire contenu date
@@ -28,6 +29,7 @@ déclaration champ d'application CalculSéjourÉducatif:
      état classe_non_agréée
      état maximum_année_scolaire
      état maximum_année_civile
+     état autre_organisme
   résultat durée_éligible contenu entier
   résultat taux_jour contenu argent
   résultat aide contenu argent
@@ -181,5 +183,10 @@ la conjoint-e par exemple), ne peut être supérieure au coût réel dépensé p
 
 ```catala
 champ d'application CalculSéjourÉducatif:
-  étiquette aide_par_defaut définition aide état minoré égal à Argent.min de montant_déboursé, aide
+  étiquette aide_par_defaut définition aide état minoré égal à
+    soit reste_a_charge égal à Argent.max de 0 €, (montant_déboursé - montant_pris_en_charge_par_autre_organisme) dans
+  Argent.min de reste_a_charge, aide
+  définition inéligibilité état autre_organisme égal à
+    si montant_pris_en_charge_par_autre_organisme >= montant_déboursé
+    alors inéligibilité ++ [Autre_organisme_financeur contenu vrai] sinon inéligibilité
 ```
