@@ -99,8 +99,11 @@ champ d'application CalculSéjourÉducatif:
     conséquence égal à durée_éligible*taux_jour
 
   définition date_debut_année_scolaire égal à
-    soit année égal à Date.accès_année de date_debut_sejour dans
-    Date.depuis_année_mois_jour de année, 9, 1
+    soit date_année égal à Date.accès_année de date_debut_sejour dans
+    soit date_mois égal à Date.accès_mois de date_debut_sejour dans
+    si date_mois < 9  # de janvier à aout on considére que le début de l'année scolaire est celle de septembre dernier
+    alors Date.depuis_année_mois_jour de (date_année - 1), 9, 1
+    sinon Date.depuis_année_mois_jour de date_année, 9, 1
 ```
 
 

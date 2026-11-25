@@ -67,7 +67,7 @@ déclaration champ d'application TestSejourEducatif_enfant_non_scolarisé:
 champ d'application TestSejourEducatif_enfant_non_scolarisé:
   définition calcul égal à
     résultat de Sejour_educatif.CalculSéjourÉducatif avec {
-      -- date_naissance : |2010-02-20|
+      -- date_naissance : |2009-08-31|
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 10
       -- au_moins_partiellement_en_période_scolaire: vrai
@@ -334,7 +334,7 @@ champ d'application TestSejourEducatif_durée_max_21_jours:
   assertion (calcul.aide = 549,15€)
 ```
 
-# Cas N°13 : enfant a exactement 18 ans au début du séjour
+# Cas N°13 : enfant a exactement 18 ans au début de l'année
 
 ```catala
 #[test]
@@ -344,7 +344,7 @@ déclaration champ d'application TestSejourEducatif_enfant_18_ans:
 champ d'application TestSejourEducatif_enfant_18_ans:
   définition calcul égal à
     résultat de Sejour_educatif.CalculSéjourÉducatif avec {
-      -- date_naissance : |2008-02-20|
+      -- date_naissance : |2007-09-01|
       -- date_debut_sejour : |2026-02-20|
       -- durée_séjour: 10
       -- au_moins_partiellement_en_période_scolaire: vrai
